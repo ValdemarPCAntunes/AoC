@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-// https://adventofcode.com/2025/day/03
+// https://adventofcode.com/2025/day/3
 
 const fileName = "input.txt"
 

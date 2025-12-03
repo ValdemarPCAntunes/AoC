@@ -61,7 +61,10 @@ func (ps *PromptSolver) createTemplatePrompt() {
 	
 	inputs := strings.Split(ans, "-")
 	year, day := inputs[0], inputs[1]
-	
+	nday := day
+	if nday[0] == '0' {
+		nday = day[1:]
+	}
 	wd, err := os.Getwd()
 	
 	if err != nil {
@@ -91,7 +94,7 @@ func (ps *PromptSolver) createTemplatePrompt() {
 		}
 		template_content := string(content)
 		template_content = strings.ReplaceAll(template_content, "$year$", year)
-		template_content = strings.ReplaceAll(template_content, "$day$", day)
+		template_content = strings.ReplaceAll(template_content, "$day$", nday)
 		template_content = strings.ReplaceAll(template_content, "$go_version$", runtime.Version()[2:]) // remove "go" prefix
 		template_content = strings.ReplaceAll(template_content, "$module_name$", fmt.Sprintf("github.com/ValdemarPCAntunes/src/advent/%s/day%s", year, day))
 		
