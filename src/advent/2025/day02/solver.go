@@ -96,11 +96,8 @@ func SolvePart2(data []string) (result Result) {
 						mem[seq1] = true
 					}
 				}
-				if len(firstId) == len(secondId) {
-					continue
-				}
 				//check second limit if lengths are different
-				if len(secondId) % len(seq) == 0  {
+				if len(firstId) != len(secondId) && len(secondId) % len(seq) == 0  {
 					seq2 := seq + strings.Repeat(seq, len(secondId) / len(seq) - 1)
 					n2, _ := strconv.Atoi(seq2)
 					if _, ok := mem[seq2]; !ok && n2 >= firstLimit && n2 <= secondLimit {
