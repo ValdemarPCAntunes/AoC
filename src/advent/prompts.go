@@ -154,8 +154,8 @@ func addNewModuleToGoWork(year string, day string) {
 			log.Println("Error reading go.work file:", err)
 		} else {
 			content := string(contentBytes)
-			newModulePath := fmt.Sprintf("use ./%s/day%s", year, day)
-			content = strings.Replace(content, ")", "\t" + newModulePath + GetLineEnding() + ")", 1)
+			newModulePath := fmt.Sprintf("\t./%s/day%s%s%s", year, day, GetLineEnding(), ")")
+			content = strings.Replace(content, ")", newModulePath, 1)
 			err = os.WriteFile(goWorkPath, []byte(content), 0644)
 			if err != nil {
 				log.Println("Error writing to go.work file:", err)

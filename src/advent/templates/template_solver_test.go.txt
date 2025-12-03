@@ -21,9 +21,9 @@ func TestSolvePart1(t *testing.T) {
     }
 
     r := SolvePart1(data)
-    e := 3
+    e := 0
 
-    if r != expected {
+    if r != e {
         t.Errorf("Expected %d, but got %d", e, r)
         t.FailNow()
     }
@@ -57,12 +57,12 @@ func TestSolvePart2(t *testing.T) {
 func TestSolveBoth(t *testing.T) {
     r1, r2 := Solve(true, true)
     e1, e2 := 0, 0
-    if r1.pwd != e1 {
-        t.Errorf("Expected part 1 result %d, but got %d", e1, r1.pwd)
+    if r1 != e1 {
+        t.Errorf("Expected part 1 result %d, but got %d", e1, r1)
         t.FailNow()
     }
-    if r2.pwd != e2 {
-        t.Errorf("Expected part 2 result %d, but got %d", e2, r2.pwd)
+    if r2 != e2 {
+        t.Errorf("Expected part 2 result %d, but got %d", e2, r2)
         t.FailNow()
     }
 }
