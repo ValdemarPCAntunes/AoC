@@ -17,12 +17,13 @@ func Solve(part1, part2 bool) (r1, r2 Result) {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	preparedData := strings.Split(string(data), elemSep)
 	if part1 {
-		r1 = SolvePart1(strings.Split(string(data), elemSep))
+		r1 = SolvePart1(preparedData)
 		fmt.Printf("Part 1 Answer: %d\n", r1)
 	}
 	if part2 {
-		r2 = SolvePart2(strings.Split(string(data), elemSep))
+		r2 = SolvePart2(preparedData)
 		fmt.Printf("Part 2 Answer: %d\n", r2)
 	}
 	return

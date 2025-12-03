@@ -111,6 +111,29 @@ func (ps *PromptSolver) createTemplatePrompt() {
 	fmt.Println("Template creation completed.")
 }
 
+func addNewModuleToGoWork(year string, day string) {
+	if _, filename, _, ok := runtime.Caller(0); !ok {
+		log.Println("You must update go.work manually, the program was not able to retrive information about where the file is")
+	} else {
+		goWorkPath := filepath.Join(filepath.Dir(filename), "go.work")
+		contentBytes, err := os.ReadFile(goWorkPath)
+		if err != nil {
+			log.Println("Error reading go.work file:", err)
+		} else {
+			content := string(contentBytes)
+			newModulePath := fmt.Sprintf("\t./%s/day%s%s%s", year, day, GetLineEnding(), ")")
+			content = strings.Replace(content, ")", newModulePath, 1)
+			err = os.WriteFile(goWorkPath, []byte(content), 0644)
+			if err != nil {
+				log.Println("Error writing to go.work file:", err)
+			} else {
+				log.Println("go.work file updated successfully.")
+			}
+		}
+	}
+}
+
+
 func (ps *PromptSolver) testSolverPrompt() {
 	ans := getUserInput("Enter yyyy-dd: ")
 	ans_parts := strings.Split(ans, "-")
@@ -141,27 +164,4 @@ func getUserInput(question string) string {
 	reader := bufio.NewReader(os.Stdin)
 	input, _ := reader.ReadString('\n')
 	return strings.TrimSpace(input)
-}
-
-
-func addNewModuleToGoWork(year string, day string) {
-	if _, filename, _, ok := runtime.Caller(0); !ok {
-		log.Println("You must update go.work manually, the program was not able to retrive information about where the file is")
-	} else {
-		goWorkPath := filepath.Join(filepath.Dir(filename), "go.work")
-		contentBytes, err := os.ReadFile(goWorkPath)
-		if err != nil {
-			log.Println("Error reading go.work file:", err)
-		} else {
-			content := string(contentBytes)
-			newModulePath := fmt.Sprintf("\t./%s/day%s%s%s", year, day, GetLineEnding(), ")")
-			content = strings.Replace(content, ")", newModulePath, 1)
-			err = os.WriteFile(goWorkPath, []byte(content), 0644)
-			if err != nil {
-				log.Println("Error writing to go.work file:", err)
-			} else {
-				log.Println("go.work file updated successfully.")
-			}
-		}
-	}
 }
