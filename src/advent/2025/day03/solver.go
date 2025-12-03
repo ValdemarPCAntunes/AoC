@@ -35,25 +35,21 @@ type Result struct {
 
 func SolvePart1(data []string) (result Result) {
 	for _, batteryBanks := range data {
-		nl := 0
+		nl := int(batteryBanks[0] - '0')
 		nr := 0
-		nmax, imax := int(batteryBanks[0]-'0'), 0
-		for i, c := range batteryBanks {
-			n := int(c - '0')
-			if n > nmax {
-				nl = nmax
-				nmax = n
-				imax = i
+		for i := 1; i < len(batteryBanks) - 1; i++ {
+			n := int(batteryBanks[i] - '0')
+			if n > nl {
+				nl = n
 				nr = 0
-			} else if i != imax && n > nr {
+			} else if n > nr {
 				nr = n
 			}
 		}
-		if nr == 0 {
-			nr = nmax
-		} else {
-			nl = nmax
-		}
+		lastNum := int(batteryBanks[len(batteryBanks)-1]-'0')
+		if nr <= lastNum {
+			nr = lastNum
+		} 
 		result.jolts += nl * 10 + nr
 	}
 	return
