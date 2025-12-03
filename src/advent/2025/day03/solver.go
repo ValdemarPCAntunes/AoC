@@ -57,6 +57,32 @@ func SolvePart1(data []string) (result Result) {
 
 
 func SolvePart2(data []string) (result Result) {
-
+	
+	for _, batteryBank := range data {
+		battery := [12]int{}
+		
+		for i, ch := range batteryBank {
+			n := int(ch - '0')
+			j := 0
+			if (len(batteryBank) - i) < len(battery) {
+				j = len(battery) - (len(batteryBank) - i)
+			}
+			for ; j < len(battery); j++ {
+				if n > battery[j] {
+					battery[j] = n
+					break
+				}
+			}
+			j++
+			for ; j < len(battery); j++ {
+				battery[j] = 0
+			}
+		}
+		jolts := 0
+		for _, n := range battery {
+			jolts = jolts * 10 + n
+		}
+		result.jolts += jolts
+	}
 	return
 }

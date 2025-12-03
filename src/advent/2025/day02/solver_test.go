@@ -59,14 +59,6 @@ func TestSolvePart2(t *testing.T) {
 }
 
 func TestSolveBoth(t *testing.T) {
-    r1, r2 := Solve(true, true)
-    e1, e2 := 31839939622, 41662374059
-    if r1.invalids != e1 {
-        t.Errorf("Expected part 1 result %d, but got %d", e1, r1.invalids)
-        t.FailNow()
-    }
-    if r2.invalids != e2 {
-        t.Errorf("Expected part 2 result %d, but got %d", e2, r2.invalids)
-        t.FailNow()
-    }
+    TestSolvePart1Full(t)
+    TestSolvePart2Full(t)
 }

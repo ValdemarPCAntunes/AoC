@@ -71,14 +71,6 @@ func TestSolvePart2(t *testing.T) {
 }
 
 func TestSolveBoth(t *testing.T) {
-    r1, r2 := Solve(true, true)
-    e1, e2 := 1034, 6166
-    if r1.pwd != e1 {
-        t.Errorf("Expected part 1 result %d, but got %d", e1, r1.pwd)
-        t.FailNow()
-    }
-    if r2.pwd != e2 {
-        t.Errorf("Expected part 2 result %d, but got %d", e2, r2.pwd)
-        t.FailNow()
-    }
+    TestSolvePart1Full(t)
+    TestSolvePart2Full(t)
 }
