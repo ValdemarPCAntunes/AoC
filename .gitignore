@@ -1,3 +1,6 @@
 .vscode
 *.code-workspace
 input.txt
+*.exe
+*.out
+*.log

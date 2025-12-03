@@ -32,8 +32,8 @@ func Solve(part1, part2 bool) (r1, r2 Result) {
 
 type Result struct {
 	invalids int
-	n   int
-	skipped []int
+	//n   int
+	//skipped []int
 }
 
 func SolvePart1(data []string) (result Result) {
