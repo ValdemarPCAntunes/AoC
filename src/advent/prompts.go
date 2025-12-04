@@ -138,18 +138,40 @@ func addNewModuleToGoWork(year string, day string) {
 
 
 func (ps *PromptSolver) testSolverPrompt() {
-	ans := getUserInput("Enter yyyy-dd: ")
+	fmt.Println("To test single parts or all:")
+	fmt.Println("Add -1 for part 1, -2 for part 2, nothing for all;")
+	fmt.Println("You may also add s(small) or f(full) depending on which test case you wish to test, nothing will be considered all for that particular part.")
+	ans := getUserInput("Enter yyyy-dd[-p]: ")
 	ans_parts := strings.Split(ans, "-")
 	year, day := ans_parts[0], ans_parts[1]
-	log.Printf("Testing solver for %s-%s\n", year, day)
+	part := ""
+	if len(ans_parts) > 2 {
+		part = ans_parts[2]
+	}
+
+	log.Printf("Testing solver for %s\n", ans)
 
 	wd, _ := os.Getwd()
 	if _, err := os.OpenFile(filepath.Join(wd,year, "day"+day, "solver.go"), os.O_RDWR|os.O_RDONLY|os.O_EXCL, 0666); err != nil {
 		fmt.Printf("Directory for %s-day%s does not exist. Please create the template first.", year, day)
 		return
 	}
-	
-	cmd := exec.Command("go", "test", "./"+year+"/day"+day, "-v")
+	testCases := ""
+	switch part {
+		case "1":
+			testCases = "-run TestSolverPart1"
+		case "1s":
+			testCases = "-run ^TestSolverPart1$"
+		case "1f":
+			testCases = "-run ^TestSolverPart1Full$"
+		case "2":
+			testCases = "-run TestSolverPart2"
+		case "2s":
+			testCases = "-run ^TestSolverPart2$"
+		case "2f":
+			testCases = "-run ^TestSolverPart2Full$"
+	}
+	cmd := exec.Command("go", "test", "./"+year+"/day"+day, testCases, "-v")
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
