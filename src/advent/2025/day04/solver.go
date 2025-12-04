@@ -49,15 +49,15 @@ func SolvePart1(data []string) (result Result) {
 			if data[i][j] != paper {
 				continue
 			}
-			isTopLeftPaper 	:= isPaper(i - 1, j - 1)
-			isTopPaper 		:= isPaper(i - 1, j)
-			isTopRightPaper := isPaper(i - 1, j + 1)
-			isLeftPaper 	:= isPaper(i, j - 1)
-			isRightPaper 	:= isPaper(i, j + 1)
-			isBotLeftPaper 	:= isPaper(i + 1, j - 1)
-			isBotPaper 		:= isPaper(i + 1, j)
-			isBotRightPaper := isPaper(i + 1, j + 1)
-			if isTopLeftPaper + isTopPaper + isTopRightPaper + isLeftPaper + isRightPaper + isBotLeftPaper + isBotPaper + isBotRightPaper < forklift_maximum_size {
+			pc := isPaper(i - 1, j - 1) 	// Top Left
+			pc += isPaper(i - 1, j) 		// Top
+			pc += isPaper(i - 1, j + 1) 	// Top Right
+			pc += isPaper(i, j - 1) 		// Left
+			pc += isPaper(i, j + 1) 		// Right
+			pc += isPaper(i + 1, j - 1) 	// Bottom Left
+			pc += isPaper(i + 1, j) 		// Bot
+			pc += isPaper(i + 1, j + 1) 	// Bottom Right
+			if pc < forklift_maximum_size {
 				result.paper_rolls++
 			}
 		}
@@ -85,15 +85,15 @@ func SolvePart2(data []string) (result Result) {
 				if runeData[i][j] != paper {
 					continue
 				}
-				isTopLeftPaper 	:= isPaper(i - 1, j - 1)
-				isTopPaper 		:= isPaper(i - 1, j)
-				isTopRightPaper := isPaper(i - 1, j + 1)
-				isLeftPaper 	:= isPaper(i, j - 1)
-				isRightPaper 	:= isPaper(i, j + 1)
-				isBotLeftPaper 	:= isPaper(i + 1, j - 1)
-				isBotPaper 		:= isPaper(i + 1, j)
-				isBotRightPaper := isPaper(i + 1, j + 1)
-				if isTopLeftPaper + isTopPaper + isTopRightPaper + isLeftPaper + isRightPaper + isBotLeftPaper + isBotPaper + isBotRightPaper < forklift_maximum_size {
+				pc := isPaper(i - 1, j - 1) 	// Top Left
+				pc += isPaper(i - 1, j) 		// Top
+				pc += isPaper(i - 1, j + 1) 	// Top Right
+				pc += isPaper(i, j - 1) 		// Left
+				pc += isPaper(i, j + 1) 		// Right
+				pc += isPaper(i + 1, j - 1) 	// Bottom Left
+				pc += isPaper(i + 1, j) 		// Bot
+				pc += isPaper(i + 1, j + 1) 	// Bottom Right
+				if pc < forklift_maximum_size {
 					result.paper_rolls++
 					runeData[i][j] = empty_space
 					done = false
