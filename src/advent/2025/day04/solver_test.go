@@ -36,7 +36,6 @@ func TestSolvePart1(t *testing.T) {
         t.Errorf("Expected %d, but got %d", e, r.paper_rolls)
         t.FailNow()
     }
-    t.Logf("TestSolvePart1 passed")
 }
 
 func TestSolvePart2Full(t *testing.T) {
@@ -69,7 +68,6 @@ func TestSolvePart2(t *testing.T) {
         t.Errorf("Expected %d, but got %d", e, r.paper_rolls)
         t.FailNow()
     }
-    t.Logf("TestSolvePart1 passed")
 }
 
 func TestSolveBoth(t *testing.T) {
