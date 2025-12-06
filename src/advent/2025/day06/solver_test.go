@@ -17,10 +17,10 @@ func TestSolvePart1Full(t *testing.T) {
 func TestSolvePart1(t *testing.T) {
 
     data := []string{
-        "123 328 51  64",
-        " 45 64  387 23",
+        "123 328  51 64 ",
+        " 45 64  387 23 ",
         "  6 98  215 314",
-        "*   +   *   +",
+        "*   +   *   +  ",
     }
 
     r := SolvePart1(data)
@@ -44,14 +44,14 @@ func TestSolvePart2Full(t *testing.T) {
 
 func TestSolvePart2(t *testing.T) {
     data := []string{
-        "123 328 51  64 ",
+        "123 328  51 64 ",
         " 45 64  387 23 ",
         "  6 98  215 314",
-        "*   +   *   +",
+        "*   +   *   +  ",
     }
 
     r := SolvePart2(data)
-    e := 0
+    e := 3263827
 
     if r.result != e {
         t.Errorf("Expected %d, but got %d", e, r.result)

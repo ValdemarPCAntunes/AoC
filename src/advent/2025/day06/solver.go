@@ -43,7 +43,7 @@ const (
 
 func SolvePart1(data []string) (result Result) {
 	ops := make([]int, len(data) - 1)
-	for i := 0; i < len(data[len(data)-1]); {
+	for i := 0; i < len(data[0]); {
 		largestNum := 0
 		opidx := 0
 		for j := range len(data)-1 {
@@ -100,6 +100,41 @@ func SolvePart1(data []string) (result Result) {
 
 
 func SolvePart2(data []string) (result Result) {
-
+	op_id := len(data) - 1
+	for i := len(data[0]) - 1; i >= 0 ; {
+		startIdx := i
+		
+		ops := make([]int, 0)
+		for ;; startIdx-- {
+			num := ""
+			for j := range len(data)-1 {
+				if data[j][startIdx] != EMPTY {
+					num += string(data[j][startIdx])
+				}
+			}
+			n, _ := strconv.Atoi(num)
+			ops = append(ops, n)
+			if data[op_id][startIdx] != EMPTY {
+				break
+			}
+		}
+		
+		subResult := 0
+		switch data[op_id][startIdx] {
+		case MUL:
+			subResult = 1
+			for _, o := range ops {
+				subResult *= o
+			}
+		case ADD:
+			for _, o := range ops {
+				subResult += o
+			}
+		}
+		
+		i = startIdx - 2
+		
+		result.result += subResult
+	}
 	return
 }
