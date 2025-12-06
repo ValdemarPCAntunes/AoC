@@ -35,7 +35,7 @@ func TestSolvePart1(t *testing.T) {
 
 func TestSolvePart2Full(t *testing.T) {
     _, r2 := Solve(false, true)
-    e := 0
+    e := 7903168391557
     if r2.result != e {
         t.Errorf("Expected part 2 result %d, but got %d", e, r2.result)
         t.FailNow()
