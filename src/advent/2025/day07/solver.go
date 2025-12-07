@@ -86,18 +86,16 @@ func SolvePart2(data []string) (result Result) {
 
 func dfs(x,y int, data []string, mem map[Pair]int) (timelines int) {
 	if x == len(data) {
-		timelines += 1
-		return 
+		return 1
 	}
 	p := Pair{x: x, y: y}
 	if _, ok := mem[p]; ok {
-		timelines += mem[p]
-		return
+		return mem[p]
 	} 
 	if data[x][y] == SPLITTER {
-		timelines += dfs(x+1, y-1, data, mem) + dfs(x+1, y+1, data, mem)
+		timelines = dfs(x+1, y-1, data, mem) + dfs(x+1, y+1, data, mem)
 	} else {
-		timelines += dfs(x+1, y, data, mem)
+		timelines = dfs(x+1, y, data, mem)
 	}
 	mem[p] = timelines
 	return
