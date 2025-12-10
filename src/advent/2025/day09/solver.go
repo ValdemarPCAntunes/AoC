@@ -3,7 +3,9 @@ package day9
 import (
 	"fmt"
 	"log"
+	"math"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -30,10 +32,38 @@ func Solve(part1, part2 bool) (r1, r2 Result) {
 }
 
 type Result struct {
-	r int
+	largestArea int
+}
+
+type Point struct {
+	x, y int
+}
+
+func (a Point) CalcArea(b Point) int {
+	c, l := math.Abs(float64(a.x - b.x + 1)), math.Abs(float64(a.y - b.y + 1))
+	return int(c * l)
 }
 
 func SolvePart1(data []string) (result Result) {
+	dlength := len(data)
+	points := make([]Point, dlength)
+
+	for i, l := range data {
+		tuple := strings.Split(l, ",")
+		p := Point{}
+		p.x, _ = strconv.Atoi(tuple[0])
+		p.y, _ = strconv.Atoi(tuple[1])
+		points[i] = p
+	}
+
+	for i := range dlength {
+		for j := i + 1; j  < dlength; j++ {
+			area := points[i].CalcArea(points[j])
+			if area > result.largestArea {
+				result.largestArea = area
+			}
+		}
+	}
 
 	return
 }

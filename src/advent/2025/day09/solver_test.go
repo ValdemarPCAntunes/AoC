@@ -7,8 +7,8 @@ import (
 
 func TestSolvePart1Full(t *testing.T) {
     r, _ := Solve(true, false)
-    e := 0
-    if r.r != e {
+    e := 4773451098
+    if r.largestArea != e {
         t.Errorf("Expected part 1 result %d, but got %d", e, r)
         t.FailNow()
     }
@@ -17,13 +17,20 @@ func TestSolvePart1Full(t *testing.T) {
 func TestSolvePart1(t *testing.T) {
 
     data := []string{
-        
+        "7,1",
+        "11,1",
+        "11,7",
+        "9,7",
+        "9,5",
+        "2,5",
+        "2,3",
+        "7,3",
     }
 
     r := SolvePart1(data)
-    e := 0
+    e := 50
 
-    if r.r != e {
+    if r.largestArea != e {
         t.Errorf("Expected %d, but got %d", e, r)
         t.FailNow()
     }
@@ -32,7 +39,7 @@ func TestSolvePart1(t *testing.T) {
 func TestSolvePart2Full(t *testing.T) {
     _, r2 := Solve(false, true)
     e := 0
-    if r2.r != e {
+    if r2.largestArea != e {
         t.Errorf("Expected part 2 result %d, but got %d", e, r2)
         t.FailNow()
     }
@@ -40,13 +47,20 @@ func TestSolvePart2Full(t *testing.T) {
 
 func TestSolvePart2(t *testing.T) {
     data := []string{
-        
+        "7,1",
+        "11,1",
+        "11,7",
+        "9,7",
+        "9,5",
+        "2,5",
+        "2,3",
+        "7,3",
     }
 
     r := SolvePart2(data)
     e := 0
 
-    if r.r != e {
+    if r.largestArea != e {
         t.Errorf("Expected %d, but got %d", e, r)
         t.FailNow()
     }
