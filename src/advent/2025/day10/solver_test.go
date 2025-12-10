@@ -7,7 +7,7 @@ import (
 
 func TestSolvePart1Full(t *testing.T) {
     r, _ := Solve(true, false)
-    e := 0
+    e := Result{}
     if r != e {
         t.Errorf("Expected part 1 result %d, but got %d", e, r)
         t.FailNow()
@@ -21,7 +21,7 @@ func TestSolvePart1(t *testing.T) {
     }
 
     r := SolvePart1(data)
-    e := 0
+    e := Result{}
 
     if r != e {
         t.Errorf("Expected %d, but got %d", e, r)
@@ -31,7 +31,7 @@ func TestSolvePart1(t *testing.T) {
 
 func TestSolvePart2Full(t *testing.T) {
     _, r2 := Solve(false, true)
-    e := 0
+    e := Result{}
     if r2 != e {
         t.Errorf("Expected part 2 result %d, but got %d", e, r2)
         t.FailNow()
@@ -44,7 +44,7 @@ func TestSolvePart2(t *testing.T) {
     }
 
     r := SolvePart2(data)
-    e := 0
+    e := Result{}
 
     if r != e {
         t.Errorf("Expected %d, but got %d", e, r)
